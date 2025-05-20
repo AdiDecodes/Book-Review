@@ -215,6 +215,47 @@ Errors are returned in a consistent format:
 │   └── routes/       # API routes
 ```
 
+## 💾 Database Schema
+
+### User Schema
+```
+User {
+  _id: ObjectId
+  name: String (required)
+  email: String (required, unique)
+  password: String (required, hashed)
+}
+```
+
+### Book Schema
+```
+Book {
+  _id: ObjectId
+  title: String (required)
+  author: String (required)
+  genre: String (required)
+  publishedDate: Date (default: Date.now)
+  description: String
+  coverImage: String
+}
+```
+
+### Review Schema
+```
+Review {
+  _id: ObjectId
+  bookId: ObjectId (ref: 'Book')
+  userId: ObjectId (ref: 'User')
+  rating: Number (min: 1, max: 5)
+  comment: String
+}
+```
+
+### Schema Relationships
+- One User can have many Reviews
+- One Book can have many Reviews
+- Each Review belongs to exactly one User and one Book
+
 ## </> Postman API
 
 To access this API via Postman, [Visit Here](https://www.postman.com/rebel-epoch/workspace/book-review-api/collection/31834944-811e4aae-8bd6-430f-a6b4-da4929b7249f)
@@ -222,7 +263,7 @@ To access this API via Postman, [Visit Here](https://www.postman.com/rebel-epoch
 
 ## </> Github repository
 
-To access the source code, [Visit Here](https://www.postman.com/rebel-epoch/workspace/book-review-api/collection/31834944-811e4aae-8bd6-430f-a6b4-da4929b7249f)
+To access the source code, [Visit Here](https://github.com/AdiDecodes/Book-Review)
 
 ## 👨‍💻 Author
 
